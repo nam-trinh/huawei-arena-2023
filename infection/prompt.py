@@ -19,17 +19,21 @@ Based on your instructions, here is the SQL query I have generated to answer the
 """
 
 ANSWER_GENERATION_PROMPT_TEMPLATE = """
-Generate a suitable answer to a prompt based on the extracted tabular information.
-The information extracted from the database is as follows:
-{returned_schema}
-Each row represents a data point, and the columns are separated by "|".
-Your answer should be short, concise and straight to the point.
-The prompt is as followed: `{question}`
+Act as a data analyst, give a normal text answer to query by using the extracted tabular data.
+
+You were given a query '{question}' and already found the answer as in a tabular format:
+'{returned_schema}'
+
+where each row represents a data point, and the columns are separated by "|"
+
+Now, you should formulate the answer in a comprehensive way to create a verbally normal response.
+Your response should be short, concise and straight to the point.
 
 ### Response:
-Based on your instructions, here is the answer I have generated to give an appropriate response:
+Based on your instructions, here is the response I have generated:
 ```sql
 """
+
 
 def generate_prompt(prompt_template, **kwargs):
     return prompt_template.format(**kwargs)
