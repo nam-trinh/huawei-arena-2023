@@ -9,27 +9,27 @@ Generate a SQL query that answers the question `{question}`.
 This query will run on a database whose schema is represented in this string:
 {db_schema}
 
+These are some hints to help you in this task. 
+Some of these hints can be wrong, so only use relevant ones:
+{tables_hints}
+
 ### Response:
 Based on your instructions, here is the SQL query I have generated to answer the question `{question}`:
 ```sql
 """
 
-ANSWER_GENERATION_PROMPT_TEMPLATE = """### Instructions:
-Your task is to convert a returned schema into an answer to the question:
-
-### Input:
-Generate an answer to the `{question}` based on the schema.
-This query will run on a database whose schema is represented in this string:
+ANSWER_GENERATION_PROMPT_TEMPLATE = """
+Generate a suitable answer to a prompt based on the extracted tabular information.
+The information extracted from the database is as follows:
 {returned_schema}
-
+Each row represents a data point, and the columns are separated by "|".
 Your answer should be short, concise and straight to the point.
+The prompt is as followed: `{question}`
 
-### Response with the following format:
-Based on your question and the returned schema, here is the answer I have generated to answer the question `{question}`:
+### Response:
+Based on your instructions, here is the answer I have generated to give an appropriate response:
+```sql
 """
 
-def generate_sql_query_generation_prompt(question, db_schema):
-    return SQL_QUERY_PROMPT_TEMPLATE.format(question=question, db_schema=db_schema)
-
-def generate_answer_generation_prompt(question, returned_schema):
-    return ANSWER_GENERATION_PROMPT_TEMPLATE.format(question=question, returned_schema=str(returned_schema))
+def generate_prompt(prompt_template, **kwargs):
+    return prompt_template.format(**kwargs)
