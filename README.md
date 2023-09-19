@@ -6,3 +6,13 @@
     - https://huggingface.co/juierror/text-to-sql-with-table-schema
     - https://huggingface.co/cssupport/t5-small-awesome-text-to-sql
 4. Use CodeS: https://github.com/RUCKBReasoning/codes
+
+
+# To-dos
+- [ ] End-to-end pipeline
+- [ ] Convert schema description from database to sqlcoder's db schema format
+- [ ] Verify input string for potential danger (LLM?)
+- [ ] Handle execution error 
+- [ ] SQL injection test
+- [ ] Check if the model can explain the answer generation workflow 
+- [ ] Loop for following-up questions ...
