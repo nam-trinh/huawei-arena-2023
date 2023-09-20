@@ -1,12 +1,14 @@
-from infection.models.llm import SQLCoder, BaseLLM
+from infection.models.llm import SQLCoder, Llama2, BaseLLM
 from infection.prompt import generate_prompt
 from typing import *
 
 def get_model(name: str, **kwargs):
     if name == 'sqlcoder':
         return SQLCoder(**kwargs)
+    elif name == 'llama2':
+        return Llama2(**kwargs)
     else:
-        pass
+        raise NotImplementedError
 
 
 
