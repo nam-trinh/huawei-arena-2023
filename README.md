@@ -11,7 +11,6 @@
 # To-dos
 - [x] End-to-end pipeline
 - [x] Convert schema description from database to sqlcoder's db schema format
-- Trustworthiness
 - [ ] Verify input string for potential danger (LLM?)
 - [ ] Handle execution error 
 - [ ] SQL injection test
