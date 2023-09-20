@@ -9,10 +9,19 @@
 
 
 # To-dos
-- [ ] End-to-end pipeline
-- [ ] Convert schema description from database to sqlcoder's db schema format
+- [x] End-to-end pipeline
+- [x] Convert schema description from database to sqlcoder's db schema format
 - [ ] Verify input string for potential danger (LLM?)
 - [ ] Handle execution error 
 - [ ] SQL injection test
 - [ ] Check if the model can explain the answer generation workflow 
 - [ ] Loop for following-up questions ...
+
+# Setup
+- Execute the following command:
+```
+cd huawei-arena-2023
+pip install -e .
+```
+
+- Use the notebook: [infection-sql.ipynb](./notebooks/infection-sql.ipynb)
