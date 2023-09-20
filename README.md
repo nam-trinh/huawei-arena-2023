@@ -11,9 +11,11 @@
 # To-dos
 - [x] End-to-end pipeline
 - [x] Convert schema description from database to sqlcoder's db schema format
+- Trustworthiness
 - [ ] Verify input string for potential danger (LLM?)
 - [ ] Handle execution error 
 - [ ] SQL injection test
+- [ ] Prompt injection test
 - [ ] Check if the model can explain the answer generation workflow 
 - [ ] Loop for following-up questions ...
 
@@ -25,3 +27,9 @@ pip install -e .
 ```
 
 - Use the notebook: [infection-sql.ipynb](./notebooks/infection-sql.ipynb)
+
+# Issues
+
+- SQLCoder oftens generate query in snake_case regardless of input schema. If schema tables or columns' names are in CamelCase, it will lead to error. Similar issue was opened in https://github.com/defog-ai/sqlcoder/issues/17
+- When using Llama2, it is recommened to use its specific [prompt template](https://gpus.llm-utils.org/llama-2-prompt-template/)
+- Tips to prevent SQL model from hallucination: https://blog.langchain.dev/llms-and-sql/
