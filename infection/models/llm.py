@@ -88,7 +88,7 @@ class SQLCoder(BaseLLM):
         return outputs
 
 
-class Llama2(BaseLLM):
+class Llama2_7B(BaseLLM):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.model_name = "meta-llama/Llama-2-7b-chat-hf"
@@ -109,6 +109,53 @@ class Llama2(BaseLLM):
             load_in_4bit=self.load_in_4bit,
             device_map="auto",
             use_cache=True,
+            cache_dir=self.cache_dir,
+            token=self.token,
+            quantization_config=self.quantization_config,
+        )
+
+        if USE_OPTIMUM:
+            self.model.to_bettertransformer()
+        self.model.eval()
+
+    def generate(self, prompt:str, **kwargs):
+        inputs = self.tokenizer(prompt, return_tensors="pt").to("cuda")
+        
+        generated_ids = self.model.generate(
+            **inputs,
+            max_new_tokens=kwargs.get("max_new_tokens", 400),
+            num_beams=kwargs.get("num_beams", 1),
+            num_return_sequences=1,
+        )
+        
+        outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
+        torch.cuda.empty_cache()
+        torch.cuda.synchronize()
+        return outputs[0]
+
+
+class Llama2_13B(BaseLLM):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.model_name = "meta-llama/Llama-2-13b-chat-hf"
+        #"openlm-research/open_llama_3b_v2"
+        #
+        # 
+        # "openlm-research/open_llama_7b_v2"
+        # "openlm-research/open_llama_13b_v2"
+
+        self.token = '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'
+        self.tokenizer = LlamaTokenizer.from_pretrained(
+            self.model_name, cache_dir=self.cache_dir,
+            token=self.token
+        )
+        self.model = LlamaForCausalLM.from_pretrained(
+            self.model_name,
+            trust_remote_code=True,
+            load_in_4bit=self.load_in_4bit,
+            device_map="auto",
+            use_cache=True,
+            cache_dir=self.cache_dir,
             token=self.token,
             quantization_config=self.quantization_config,
         )
