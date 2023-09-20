@@ -81,3 +81,20 @@ Your response should be either [YES] or [NO]. Provide explaination if possible.
 
 def generate_prompt(prompt_template, **kwargs):
     return prompt_template.format(**kwargs)
+
+
+def list_all_templates():
+    global_vars = globals()
+    var_names = [var for var in global_vars if not callable(global_vars[var]) and not var.startswith("__")]
+    print("Available prompt templates:")
+    print("---------------------------")
+    for var_name in var_names:
+        print(var_name)
+
+def show_template(template_name):
+    global_vars = globals()
+    if template_name in global_vars:
+        print(global_vars[template_name])
+    else:
+        print("Template not found")
+    
