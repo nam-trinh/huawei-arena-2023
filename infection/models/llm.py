@@ -68,15 +68,17 @@ class SQLCoder(BaseLLM):
     def generate(self, prompt:str, **kwargs):
         eos_token_id = self.tokenizer.convert_tokens_to_ids(["```"])[0]
         inputs = self.tokenizer(prompt, return_tensors="pt").to("cuda") # or to("cpu")
-        generated_ids = self.model.generate(
-            **inputs,
-            num_return_sequences=1,
-            eos_token_id=eos_token_id,
-            pad_token_id=eos_token_id,
-            max_new_tokens=kwargs.get("max_new_tokens", 400),
-            do_sample=False,
-            num_beams=kwargs.get("num_beams", 1)
-        )
+        
+        with torch.no_grad():
+            generated_ids = self.model.generate(
+                **inputs,
+                num_return_sequences=1,
+                eos_token_id=eos_token_id,
+                pad_token_id=eos_token_id,
+                max_new_tokens=kwargs.get("max_new_tokens", 400),
+                do_sample=False,
+                num_beams=kwargs.get("num_beams", 1)
+            )
         
         outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
         
@@ -91,8 +93,9 @@ class SQLCoder(BaseLLM):
 class Llama2(BaseLLM):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.model_name = "meta-llama/Llama-2-7b-chat-hf"
-        #"openlm-research/open_llama_3b_v2"
+        self.model_name = "meta-llama/Llama-2-13b-chat-hf"
+        # "meta-llama/Llama-2-7b-chat-hf"
+        # "openlm-research/open_llama_3b_v2"
         #
         # 
         # "openlm-research/open_llama_7b_v2"
@@ -120,12 +123,13 @@ class Llama2(BaseLLM):
     def generate(self, prompt:str, **kwargs):
         inputs = self.tokenizer(prompt, return_tensors="pt").to("cuda")
         
-        generated_ids = self.model.generate(
-            **inputs,
-            max_new_tokens=kwargs.get("max_new_tokens", 400),
-            num_beams=kwargs.get("num_beams", 1),
-            num_return_sequences=1,
-        )
+        with torch.no_grad():
+            generated_ids = self.model.generate(
+                **inputs,
+                max_new_tokens=kwargs.get("max_new_tokens", 400),
+                num_beams=kwargs.get("num_beams", 1),
+                num_return_sequences=1,
+            )
         
         outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
         torch.cuda.empty_cache()
