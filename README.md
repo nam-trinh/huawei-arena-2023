@@ -1,5 +1,4 @@
-https://huawei.agorize.com/en/challenges/irchack2023/
-# [Huawei Tech Arena 2023]()
+# [Huawei Tech Arena 2023](https://huawei.agorize.com/en/challenges/irchack2023/)
 <p align="center"> <img width="800" alt="screen" src="imgs/huawei/banner.png"> </p>
 
 ## Competition Detail
