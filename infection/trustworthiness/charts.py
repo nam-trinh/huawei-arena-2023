@@ -10,14 +10,15 @@ def plot_sql_chart(
     Visualize the SQL response using the given chart type
     """
 
-    sql_response_df = format_sql_execution(records, column_names, format='dataframe')
-
-    assert chart_type in [
+    if chart_type not in [
         'barh', 'bar', 'line',  
         'scatter', 'pie', 'hist', 
-        'box'], f'chart of type {chart_type} not supported'
+        'box'
+        ]:
+        return None
 
     try:
+        sql_response_df = format_sql_execution(records, column_names, format='dataframe')
         fig = sql_response_df.plot(
             x=column_names[0], 
             y=column_names[1],
