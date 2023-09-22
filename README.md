@@ -1,4 +1,18 @@
-# Possible solutions:
+# [Huawei Tech Arena 2023](https://huawei.agorize.com/en/challenges/irchack2023/)
+<p align="center"> <img width="800" alt="screen" src="imgs/huawei/banner.png"> </p>
+
+## Competition Detail
+
+<p align="center"> <img width="500" alt="screen" src="imgs/huawei/schedule.png"> </p>
+
+<p align="center"> <img width="500" alt="screen" src="imgs/huawei/goal.png"> </p>
+
+<p align="center"> <img width="500" alt="screen" src="imgs/huawei/architecture.png"> </p>
+
+<p align="center"> <img width="500" alt="screen" src="imgs/huawei/pillars.png"> </p>
+
+
+## Possible solutions:
 
 1. Use defog/sqlcoder from huggingface
 2. Use LLaMa2 from huggingface but needs finetune since performance really bad: https://medium.com/llamaindex-blog/easily-finetune-llama-2-for-your-text-to-sql-applications-ecd53640e10d
@@ -8,7 +22,7 @@
 4. Use CodeS: https://github.com/RUCKBReasoning/codes
 
 
-# To-dos
+## To-dos
 - [x] End-to-end pipeline
 - [x] Convert schema description from database to sqlcoder's db schema format
 - [ ] Verify input string for potential danger (LLM?)
@@ -18,7 +32,8 @@
 - [ ] Check if the model can explain the answer generation workflow 
 - [ ] Loop for following-up questions ...
 
-# Setup
+
+## Setup
 - Execute the following command:
 ```
 cd huawei-arena-2023
@@ -27,7 +42,25 @@ pip install -e .
 
 - Use the notebook: [infection-sql.ipynb](./notebooks/infection-sql.ipynb)
 
-# Issues
+## Docker
+- Build docker using
+```
+cd huawei-arena-2023
+DOCKER_BUILDKIT=1 docker build -t huawei:latest .
+```
+
+- Run docker using
+```
+docker run -it -p 8008:8008 --gpus all huawei:latest
+```
+
+- Inside docker container, run notebook using
+```
+sh jupyter.sh
+```
+
+
+## Issues
 
 - SQLCoder oftens generate query in snake_case regardless of input schema. If schema tables or columns' names are in CamelCase, it will lead to error. Similar issue was opened in https://github.com/defog-ai/sqlcoder/issues/17
 - When using Llama2, it is recommened to use its specific [prompt template](https://gpus.llm-utils.org/llama-2-prompt-template/)

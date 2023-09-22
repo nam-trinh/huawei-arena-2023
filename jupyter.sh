@@ -1,0 +1,1 @@
+jupyter notebook . --port 8008 --ip 0.0.0.0 --no-browser --allow-root

@@ -1,39 +1,28 @@
-from infection.models.llm import SQLCoder, Llama2, BaseLLM
-from infection.prompt import generate_prompt
 from typing import *
+from infection.prompt import generate_prompt
+from infection.models.llm import SQLCoder, Llama2, BaseLLM, CodeS, FlanT5
 
 def get_model(name: str, **kwargs):
     if name == 'sqlcoder':
         return SQLCoder(**kwargs)
     elif name == 'llama2':
         return Llama2(**kwargs)
+    elif name == 'codes':
+        return CodeS(**kwargs)
+    elif name == 'flant5':
+        return FlanT5(**kwargs)
     else:
         raise NotImplementedError
 
+def get_model_response(model: BaseLLM, prompt_template:str, **kwargs):
+    prompt = generate_prompt(prompt_template, **kwargs)
 
+    num_beams = kwargs.pop('num_beams', 1)
+    outputs = model.generate(prompt, num_beams=num_beams)
 
-def generate_llm_response(
-        llm: BaseLLM, prompt_template: str,
-        question: str, db_schema: str, tables_hints: List[str]=None,
-    ) -> str:
-    # Implement logic to generate an SQL query based on the question and table hints.
-    # Replace the "pass" with a calling function to LLM
-    
-    # Handle the case when table hints are empty or invalid.
-    if not tables_hints:
-        # Default behavior: Query all tables
-        pass
-    
-    # Handle the general case
-    # Example: "SELECT COUNT(*) FROM customers"
-    prompt = generate_prompt(
-        prompt_template, 
-        question=question, 
-        db_schema=db_schema,
-        # tables_hints=tables_hints
-    )
-
-    outputs = llm.generate(prompt, num_beams=1)
-    
-    sql_query = outputs[0].split("```sql")[-1].split("```")[0].split(";")[0].strip() + ";"
-    return sql_query
+    catchphrase = kwargs.get('catchphrase',None)
+    if catchphrase is not None:
+        result = outputs.split(catchphrase)[-1].strip()
+    else:
+        result = outputs.strip()
+    return result
