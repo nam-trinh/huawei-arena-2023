@@ -47,6 +47,9 @@ def suggest_plot(df, height=600):
     figs: dict of plotly figures
 
     """
+    if len(df) == 1:
+        return None
+
     # Separate numerical and object columns
     numerical_columns = df.select_dtypes(include=['int64', 'float64']).columns.tolist()
     object_columns = df.select_dtypes(include=['object']).columns.tolist()

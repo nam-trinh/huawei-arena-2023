@@ -146,12 +146,13 @@ class Llama2_7B(BaseLLM):
     def generate(self, prompt:str, **kwargs):
         inputs = self.tokenizer(prompt, return_tensors="pt").to("cuda")
         
-        generated_ids = self.model.generate(
-            **inputs,
-            max_new_tokens=kwargs.get("max_new_tokens", 400),
-            num_beams=kwargs.get("num_beams", 1),
-            num_return_sequences=1,
-        )
+        with torch.no_grad():
+            generated_ids = self.model.generate(
+                **inputs,
+                max_new_tokens=kwargs.get("max_new_tokens", 400),
+                num_beams=kwargs.get("num_beams", 1),
+                num_return_sequences=1,
+            )
         
         outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
         torch.cuda.empty_cache()
