@@ -41,6 +41,24 @@ pip install -e .
 
 - Use the notebook: [infection-sql.ipynb](./notebooks/infection-sql.ipynb)
 
+## Docker
+- Build docker using
+```
+cd huawei-arena-2023
+DOCKER_BUILDKIT=1 docker build -t huawei:latest .
+```
+
+- Run docker using
+```
+docker run -it -p 8008:8008 --gpus all huawei:latest
+```
+
+- Inside docker container, run notebook using
+```
+sh jupyter.sh
+```
+
+
 ## Issues
 
 - SQLCoder oftens generate query in snake_case regardless of input schema. If schema tables or columns' names are in CamelCase, it will lead to error. Similar issue was opened in https://github.com/defog-ai/sqlcoder/issues/17
