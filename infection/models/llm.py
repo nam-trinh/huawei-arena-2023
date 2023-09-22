@@ -1,7 +1,7 @@
 from transformers import (
     AutoTokenizer, AutoModelForCausalLM,
     LlamaTokenizer, LlamaForCausalLM,
-    BitsAndBytesConfig
+    BitsAndBytesConfig, GPTQConfig,
 )
 import torch
 try:
@@ -107,6 +107,7 @@ class Llama2_7B(BaseLLM):
             self.model_name,
             trust_remote_code=True,
             load_in_4bit=self.load_in_4bit,
+            load_in_8bit=self.load_in_8bit,
             device_map="auto",
             use_cache=True,
             cache_dir=self.cache_dir,
