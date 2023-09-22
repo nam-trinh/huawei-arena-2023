@@ -32,6 +32,7 @@ dependencies = [
     "scipy>=1.11.2",
     "optimum==1.13.1",
     "bitsandbytes==0.41.1",
+    "torch>=2.0.0",
     "sentencepiece==0.1.99",
     "tqdm>=4.64.1",
     "tabulate>=0.8.10",
