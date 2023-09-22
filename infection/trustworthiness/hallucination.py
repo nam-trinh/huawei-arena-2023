@@ -1,7 +1,7 @@
+from typing import *
 from sqlglot import parse_one, exp
-from infection.database import get_schemas
 
-def check_sql_hallucination(cursor, sql_query:str):
+def check_sql_hallucination(schemas:Dict, sql_query:str):
     """
     Check if there are non-existing column or table names in the query.
     Attempt convert CamelCase to snake_case
@@ -11,7 +11,6 @@ def check_sql_hallucination(cursor, sql_query:str):
     query_all_column_names = []
     query_all_table_names = []
     
-    schemas = get_schemas(cursor)
     for table_name, columns in schemas.items():
         schema_all_names.append(table_name)
         for col in columns:

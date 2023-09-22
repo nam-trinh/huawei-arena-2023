@@ -1,5 +1,5 @@
 from typing import *
-from infection.database import format_sql_execution
+from infection.databases import format_sql_execution
 
 def plot_sql_chart(
         records:List[tuple], 
