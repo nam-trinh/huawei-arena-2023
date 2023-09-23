@@ -11,8 +11,11 @@ def format_sql_execution(records:List[tuple], column_names: List[str], format:st
     if format == 'table':
         results = tabulate(records, tablefmt="github", headers=column_names)
     elif format == 'dataframe':
-        results = pd.DataFrame(records)
-        results.columns = column_names
+        try:
+            results = pd.DataFrame(records)
+            results.columns = column_names
+        except:
+            return None
     else:
         raise ValueError(f"Unknown format: {format}")
     return results

@@ -1,2 +1,2 @@
-from infection.trustworthiness.charts import plot_sql_chart
+from infection.trustworthiness.charts import plot_sql_chart, suggest_plot
 from infection.trustworthiness.hallucination import fix_sql_hallucination, check_sql_hallucination

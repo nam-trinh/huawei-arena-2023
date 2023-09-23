@@ -17,14 +17,10 @@ class SQL3Database(Database):
         """
         Execute the given SQL query
         """
-        try:
-            self.cursor.execute(sql_query)
-            records = self.cursor.fetchall()
-            column_names = [i[0] for i in self.cursor.description]
-            return records, column_names
-        except sqlite3.Error as e:
-            print(f"Error executing the SQL query: {e}")
-            return None, None
+        self.cursor.execute(sql_query)
+        records = self.cursor.fetchall()
+        column_names = [i[0] for i in self.cursor.description]
+        return records, column_names
 
     def get_schemas(self, table_hints=None):
         '''
