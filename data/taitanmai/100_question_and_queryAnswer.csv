@@ -1,0 +1,101 @@
+,query,sql
+0,age of countries in Chile by flavor,"SELECT age , flavor FROM countries WHERE location = 'Chile' GROUP BY flavor"
+1,Find wines having price between 422 and 304,SELECT name FROM wines WHERE price > 422 and price < 304
+2,Top 231 wineries by price,SELECT name FROM wineries ORDER BY price DESC LIMIT 231
+3,duration of wineries before 1954,SELECT duration FROM wineries WHERE date < 1954
+4,List minimum of price of wine,SELECT min(price) FROM wine
+5,title and acidity of bottles since 1964,"SELECT title , acidity FROM bottles WHERE date > 1964"
+6,List of texture of tasters before 1978,SELECT texture FROM tasters WHERE date < 1978
+7,Show me age of bottles in Spain by quality,"SELECT age , quality FROM bottles WHERE location = 'Spain' GROUP BY quality"
+8,flavor of countries,SELECT flavor FROM countries
+9,texture of tasters after 1963 in Spain,SELECT texture FROM tasters WHERE date > 1963 AND location='Spain'
+10,flavor of cities before 1978,SELECT flavor FROM cities WHERE date < 1978
+11,grapes having texture between 542 and 49,SELECT name FROM grapes WHERE texture > 542 and texture < 49
+12,duration of tasters before 1960,SELECT duration FROM tasters WHERE date < 1960
+13,wineries which have both acidity and duration,SELECT name FROM wineries WHERE acidity IS true AND duration IS true
+14,points and price of tasters since 1999,"SELECT points , price FROM tasters WHERE date > 1999"
+15,Find Top 399 deliveries by level,SELECT name FROM deliveries ORDER BY level DESC LIMIT 399
+16,provinces having flavor between 742 and 761,SELECT name FROM provinces WHERE flavor > 742 and flavor < 761
+17,maximum of texture of delivery,SELECT max(texture) FROM delivery
+18,price of wineries by flavor,"SELECT price , flavor FROM wineries GROUP BY flavor"
+19,age of deliveries after 2010 in Portugal,SELECT age FROM deliveries WHERE date > 2010 AND location='Portugal'
+20,level of provinces in US by age,"SELECT level , age FROM provinces WHERE location = 'US' GROUP BY age"
+21,Top 706 bottles by age,SELECT name FROM bottles ORDER BY age DESC LIMIT 706
+22,cities having points between 64 and 924,SELECT name FROM cities WHERE points > 64 and points < 924
+23,Top 710 cities by duration,SELECT name FROM cities ORDER BY duration DESC LIMIT 710
+24,level of countries by quality,"SELECT level , quality FROM countries GROUP BY quality"
+25,points of countries,SELECT points FROM countries
+26,price of bottles by province,"SELECT price , province FROM bottles GROUP BY province"
+27,price of provinces in Turkey by province,"SELECT price , province FROM provinces WHERE location = 'Turkey' GROUP BY province"
+28,flavor and age of grapes since 1957,"SELECT flavor , age FROM grapes WHERE date > 1957"
+29,taste of grapes in Portugal by variety,"SELECT taste , variety FROM grapes WHERE location = 'Portugal' GROUP BY variety"
+30,age of countries in US by quality,"SELECT age , quality FROM countries WHERE location = 'US' GROUP BY quality"
+31,Show me duration and price of bottles since 2008,"SELECT duration , price FROM bottles WHERE date > 2008"
+32,minimum taste for each age,"SELECT min(taste) , age FROM taste GROUP BY age"
+33,bottles with a level of maximum 683 by their quality,"SELECT name , quality FROM bottles WHERE level <= 683 GROUP BY quality"
+34,tasters with a texture of maximum 961 by their flavor,"SELECT name , flavor FROM tasters WHERE texture <= 961 GROUP BY flavor"
+35,title and price of deliveries since 2009,"SELECT title , price FROM deliveries WHERE date > 2009"
+36,wineries which have both taste and acidity,SELECT name FROM wineries WHERE taste IS true AND acidity IS true
+37,cities with a points of maximum 381 by their variety,"SELECT name , variety FROM cities WHERE points <= 381 GROUP BY variety"
+38,level of wineries by flavor,"SELECT level , flavor FROM wineries GROUP BY flavor"
+39,duration by variety,"SELECT name , variety FROM duration GROUP BY variety"
+40,provinces having price between 877 and 656,SELECT name FROM provinces WHERE price > 877 and price < 656
+41,points of bottles,SELECT points FROM bottles
+42,average of level of taster,SELECT avg(level) FROM taster
+43,texture and age of provinces since 2018,"SELECT texture , age FROM provinces WHERE date > 2018"
+44,Find wines having acidity between 83 and 140,SELECT name FROM wines WHERE acidity > 83 and acidity < 140
+45,cities having price between 617 and 44,SELECT name FROM cities WHERE price > 617 and price < 44
+46,title of grapes by country,"SELECT title , country FROM grapes GROUP BY country"
+47,countries which have both level and texture,SELECT name FROM countries WHERE level IS true AND texture IS true
+48,points of countries by price,"SELECT points , price FROM countries GROUP BY price"
+49,countries which have both title and flavor,SELECT name FROM countries WHERE title IS true AND flavor IS true
+50,grapes with a points of maximum 512 by their country,"SELECT name , country FROM grapes WHERE points <= 512 GROUP BY country"
+51,acidity of bottles before 1996,SELECT acidity FROM bottles WHERE date < 1996
+52,List of acidity of countries after 1956 in Turkey,SELECT acidity FROM countries WHERE date > 1956 AND location='Turkey'
+53,List average of level of taster,SELECT avg(level) FROM taster
+54,points of provinces,SELECT points FROM provinces
+55,points and acidity of countries since 1994,"SELECT points , acidity FROM countries WHERE date > 1994"
+56,deliveries bottled after 2013 in Portugal,SELECT name FROM deliveries WHERE location = 'Portugal' AND date > 2013
+57,count taste for each variety,"SELECT count(taste) , variety FROM taste GROUP BY variety"
+58,List of points of cities,SELECT points FROM cities
+59,texture by variety,"SELECT name , variety FROM texture GROUP BY variety"
+60,acidity by province,"SELECT name , province FROM acidity GROUP BY province"
+61,acidity by point,"SELECT name , point FROM acidity GROUP BY point"
+62,Top 561 countries by duration,SELECT name FROM countries ORDER BY duration DESC LIMIT 561
+63,cities having acidity between 288 and 638,SELECT name FROM cities WHERE acidity > 288 and acidity < 638
+64,age by province,"SELECT name , province FROM age GROUP BY province"
+65,price by variety,"SELECT name , variety FROM price GROUP BY variety"
+66,level of tasters,SELECT level FROM tasters
+67,provinces which have both flavor and acidity,SELECT name FROM provinces WHERE flavor IS true AND acidity IS true
+68,age of tasters after 1983 in Portugal,SELECT age FROM tasters WHERE date > 1983 AND location='Portugal'
+69,List duration of deliveries before 2007,SELECT duration FROM deliveries WHERE date < 2007
+70,acidity and texture of countries since 1983,"SELECT acidity , texture FROM countries WHERE date > 1983"
+71,minimum taste for each age,"SELECT min(taste) , age FROM taste GROUP BY age"
+72,count taste for each flavor,"SELECT count(taste) , flavor FROM taste GROUP BY flavor"
+73,title of countries by variety,"SELECT title , variety FROM countries GROUP BY variety"
+74,Find Top 269 tasters by flavor,SELECT name FROM tasters ORDER BY flavor DESC LIMIT 269
+75,flavor and level of countries since 1978,"SELECT flavor , level FROM countries WHERE date > 1978"
+76,Top 610 wines by age,SELECT name FROM wines ORDER BY age DESC LIMIT 610
+77,age and title of wineries since 1983,"SELECT age , title FROM wineries WHERE date > 1983"
+78,countries bottled after 1984 in Canada,SELECT name FROM countries WHERE location = 'Canada' AND date > 1984
+79,Top 339 deliveries by texture,SELECT name FROM deliveries ORDER BY texture DESC LIMIT 339
+80,countries having points between 364 and 136,SELECT name FROM countries WHERE points > 364 and points < 136
+81,maximum flavor for each flavor,"SELECT max(flavor) , flavor FROM flavor GROUP BY flavor"
+82,Find deliveries with a points of maximum 366 by their flavor,"SELECT name , flavor FROM deliveries WHERE points <= 366 GROUP BY flavor"
+83,points by price,"SELECT name , price FROM points GROUP BY price"
+84,taste of wines in Chile by country,"SELECT taste , country FROM wines WHERE location = 'Chile' GROUP BY country"
+85,List age of cities before 1970,SELECT age FROM cities WHERE date < 1970
+86,Top 166 cities by age,SELECT name FROM cities ORDER BY age DESC LIMIT 166
+87,wines having texture between 527 and 465 by flavor,"SELECT name , flavor FROM wines WHERE texture < 527 AND texture > 465 GROUP BY flavor"
+88,price of provinces before 1989,SELECT price FROM provinces WHERE date < 1989
+89,age of provinces after 1964 in Turkey,SELECT age FROM provinces WHERE date > 1964 AND location='Turkey'
+90,cities produced after 1993 in Italy,SELECT name FROM cities WHERE location = 'Italy' AND date > 1993
+91,provinces with a taste of maximum 603 by their country,"SELECT name , country FROM provinces WHERE taste <= 603 GROUP BY country"
+92,texture by variety,"SELECT name , variety FROM texture GROUP BY variety"
+93,wineries having acidity between 812 and 124 by quality,"SELECT name , quality FROM wineries WHERE acidity < 812 AND acidity > 124 GROUP BY quality"
+94,age and age of countries since 1960,"SELECT age , age FROM countries WHERE date > 1960"
+95,points of countries before 1972,SELECT points FROM countries WHERE date < 1972
+96,age of provinces by country,"SELECT age , country FROM provinces GROUP BY country"
+97,title of countries after 1950 in Italy,SELECT title FROM countries WHERE date > 1950 AND location='Italy'
+98,tasters bottled after 2005 in Turkey,SELECT name FROM tasters WHERE location = 'Turkey' AND date > 2005
+99,grapes which have both points and duration,SELECT name FROM grapes WHERE points IS true AND duration IS true
