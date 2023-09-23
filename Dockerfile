@@ -32,9 +32,9 @@ ENV PATH /opt/conda/bin:$PATH
 
 # Instal environment
 FROM dev-base as conda-installs
-ARG PYTHON_VERSION=3.10.11
-ARG CUDA_VERSION=10.2
-ARG PYTORCH_VERSION=1.12.1
+ARG PYTHON_VERSION=3.10
+ARG CUDA_VERSION=11.3
+ARG PYTORCH_VERSION=1.12.0
 ARG CUDA_CHANNEL=nvidia
 ARG INSTALL_CHANNEL=pytorch
 ENV CONDA_OVERRIDE_CUDA=${CUDA_VERSION}
@@ -50,7 +50,7 @@ RUN curl -fsSL -v -o ~/mambaforge.sh -O https://github.com/conda-forge/miniforge
 ENV PATH /opt/mamba/bin:$PATH
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
-ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64
+ENV LD_LIBRARY_PATH /opt/mamba/lib:$LD_LIBRARY_PATH
 ENV PYTORCH_VERSION ${PYTORCH_VERSION}
 
 # Install dependencies
