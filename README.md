@@ -12,6 +12,33 @@
 <p align="center"> <img width="500" alt="screen" src="imgs/huawei/pillars.png"> </p>
 
 
+## Setup
+- Execute the following command:
+```
+cd huawei-arena-2023
+pip install -e .
+```
+
+- Use the notebook: [infection-sql-UI.ipynb](./notebooks/infection-sql-UI.ipynb)
+
+## Docker
+- Build docker using
+```
+cd huawei-arena-2023
+DOCKER_BUILDKIT=1 docker build -t huawei:latest .
+```
+
+- Run docker using
+```
+docker run -it -p 8008:8008 --gpus all huawei:latest
+```
+
+- Inside docker container, run notebook using
+```
+sh jupyter.sh
+```
+
+
 ## Possible solutions:
 
 1. Use defog/sqlcoder from huggingface
@@ -31,33 +58,6 @@
 - [ ] Prompt injection test
 - [ ] Check if the model can explain the answer generation workflow 
 - [ ] Loop for following-up questions ...
-
-
-## Setup
-- Execute the following command:
-```
-cd huawei-arena-2023
-pip install -e .
-```
-
-- Use the notebook: [infection-sql.ipynb](./notebooks/infection-sql.ipynb)
-
-## Docker
-- Build docker using
-```
-cd huawei-arena-2023
-DOCKER_BUILDKIT=1 docker build -t huawei:latest .
-```
-
-- Run docker using
-```
-docker run -it -p 8008:8008 --gpus all huawei:latest
-```
-
-- Inside docker container, run notebook using
-```
-sh jupyter.sh
-```
 
 
 ## Issues
