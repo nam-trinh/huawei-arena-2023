@@ -210,6 +210,47 @@ class CodeS(SQLCoder):
             self.model.to_bettertransformer()
         self.model.eval()
 
+class CodeS_3B(SQLCoder):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.model_name = "seeklhy/codes-3b" #"microsoft/CodeGPT-small-py-adaptedGPT2"
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            self.model_name, cache_dir=self.cache_dir
+        )
+        self.model = AutoModelForCausalLM.from_pretrained(
+            self.model_name,
+            trust_remote_code=True,
+            load_in_4bit=self.load_in_4bit,
+            device_map="auto",
+            use_cache=True,
+            quantization_config=self.quantization_config,
+        )
+
+        if USE_OPTIMUM:
+            self.model.to_bettertransformer()
+        self.model.eval()
+        
+
+class CodeS_7B(SQLCoder):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.model_name = "seeklhy/codes-7b" #"microsoft/CodeGPT-small-py-adaptedGPT2"
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            self.model_name, cache_dir=self.cache_dir
+        )
+        self.model = AutoModelForCausalLM.from_pretrained(
+            self.model_name,
+            trust_remote_code=True,
+            load_in_4bit=self.load_in_4bit,
+            device_map="auto",
+            use_cache=True,
+            quantization_config=self.quantization_config,
+        )
+
+        if USE_OPTIMUM:
+            self.model.to_bettertransformer()
+        self.model.eval()
+
 class FlanT5(SQLCoder):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

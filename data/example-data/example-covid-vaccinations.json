@@ -1,0 +1,58 @@
+[
+  {
+    "question": "What's the statistic code used for fully vaccinated?",
+    "table_id": [
+      "covid_vaccinations"
+    ],
+    "sql": [
+      "select distinct STATISTIC_CODE from covid_vaccinations WHERE `Statistic_Label` = 'Fully Vaccinated'"
+    ],
+    "sql_result": "{\"STATISTIC_CODE\":{\"0\":\"CDC45C01\"}}"
+  },
+  {
+    "question": "How many different age groups were tracked for covid vacciations?",
+    "table_id": [
+      "covid_vaccinations"
+    ],
+    "sql": [
+      "select count(distinct `Age Group`) from covid_vaccinations"
+    ],
+    "sql_result": "{\"count(distinct `Age Group`)\":{\"0\":2}}"
+  },
+  {
+    "question": "What was the biggest vaccination rate achieved?",
+    "table_id": [],
+    "sql": [
+      "select max(VALUE) from covid_vaccinations"
+    ],
+    "sql_result": "{\"max(VALUE)\":{\"0\":99.4}}"
+  },
+  {
+    "question": "Where was the biggest vaccination rate achieved?",
+    "table_id": [],
+    "sql": [
+      "select `Local Electoral Area` from covid_vaccinations WHERE VALUE=max(VALUE)"
+    ],
+    "sql_result": "{\"Local Electoral Area\":{\"0\":\"Rathfarnham-Templeogue, South Dublin\"}}"
+  },
+  {
+    "question": "Which electoral area has worst latest fully vaccinated rate?",
+    "table_id": [
+      "covid_vaccinations"
+    ],
+    "sql": [
+      "select `Local Electoral Area` from covid_vaccinations where Statistic_Label='Fully Vaccinated' order by `TLIST(M1)` desc, `VALUE` desc limit 1"
+    ],
+    "sql_result": "{\"Local Electoral Area\":{\"0\":\"Rathfarnham-Templeogue, South Dublin\"}}"
+  },
+  {
+    "question": "Which electoral area has worst latest fully vaccinated rate?",
+    "table_id": [
+      "covid_vaccinations"
+    ],
+    "sql": [
+      "select `Local Electoral Area` from covid_vaccinations where Statistic_Label='Fully Vaccinated' order by `TLIST(M1)` desc, `VALUE` asc limit 1"
+    ],
+    "sql_result": "{\"Local Electoral Area\":{\"0\":\"Buncrana, Donegal\"}}"
+  }
+]

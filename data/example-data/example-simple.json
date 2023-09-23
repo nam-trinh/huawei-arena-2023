@@ -1,0 +1,53 @@
+[
+  {
+    "question": "How many users in the system?",
+    "table_id": [
+      "users"
+    ],
+    "sql": [
+      "SELECT count(*) FROM users"
+    ],
+    "sql_result": "{\"count(*)\":{\"0\":2}}"
+  },
+  {
+    "question": "How many admin users in the system?",
+    "table_id": [
+      "users"
+    ],
+    "sql": [
+      "SELECT count(*) FROM users WHERE is_admin=true"
+    ],
+    "sql_result": "{\"count(*)\":{\"0\":1}}"
+  },
+  {
+    "question": "How does table with users named?",
+    "table_id": [
+      "sqlite_schema"
+    ],
+    "sql": [
+      "SELECT name FROM sqlite_schema WHERE type = 'table' AND name like '%user%'"
+    ],
+    "sql_result": "{\"name\":{\"0\":\"users\"}}"
+  },
+  {
+    "question": "What's total orders value of non-admin users?",
+    "table_id": [
+      "users",
+      "orders"
+    ],
+    "sql": [
+      "SELECT SUM(value) FROM orders LEFT JOIN users ON (orders.user_id = users.user_id) WHERE users.is_admin=false"
+    ],
+    "sql_result": "{\"SUM(value)\":{\"0\":1400}}"
+  },
+  {
+    "question": "Is there any unpaid orders?",
+    "table_id": [
+      "orders"
+    ],
+    "sql": [
+      "SELECT EXISTS(SELECT * FROM orders WHERE paid=false)"
+    ],
+    "sql_result": "{\"EXISTS(SELECT * FROM orders WHERE paid=false)\":{\"0\":1}}"
+  }
+]
