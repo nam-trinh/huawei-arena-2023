@@ -53,10 +53,10 @@ sh jupyter.sh
 - [x] End-to-end pipeline
 - [x] Convert schema description from database to sqlcoder's db schema format
 - [ ] Verify input string for potential danger (LLM?)
-- [ ] Handle execution error 
-- [ ] SQL injection test
-- [ ] Prompt injection test
-- [ ] Check if the model can explain the answer generation workflow 
+- [x] Handle execution error 
+- [x] SQL injection test
+- [x] Prompt injection test
+- [x] Check if the model can explain the answer generation workflow 
 - [ ] Loop for following-up questions ...
 
 
