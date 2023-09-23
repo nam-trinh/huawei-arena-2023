@@ -3,13 +3,10 @@
 
 ## Competition Detail
 
-<p align="center"> <img width="500" alt="screen" src="imgs/huawei/schedule.png"> </p>
+<p align="center"> <img width="500" alt="screen" src="imgs/huawei/Infectious.drawio.png"> </p>
 
-<p align="center"> <img width="500" alt="screen" src="imgs/huawei/goal.png"> </p>
+<p align="center"> <img width="500" alt="screen" src="imgs/huawei/InfectiousBPMN.svg"> </p>
 
-<p align="center"> <img width="500" alt="screen" src="imgs/huawei/architecture.png"> </p>
-
-<p align="center"> <img width="500" alt="screen" src="imgs/huawei/pillars.png"> </p>
 
 
 ## Setup
