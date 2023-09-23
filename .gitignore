@@ -1,3 +1,9 @@
 *ipynb_checkpoints*
-*__pycache__*
-*results*
+*/__pycache__/
+.cache/
+.cache
+*.egg-info/
+*.pyc
+tags
+
+*.swp
