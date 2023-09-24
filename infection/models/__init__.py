@@ -1,4 +1,4 @@
-from infection.models.llm import SQLCoder, Llama2_7B, Llama2_13B, BaseLLM, CodeS, CodeS_3B, CodeS_7B, FlanT5
+from infection.models.llm import SQLCoder, Llama2_7B, Llama2_13B, BaseLLM, CodeS, CodeS_3B, CodeS_7B, FlanT5, NSQL350
 from infection.prompt import generate_prompt
 from typing import *
 
