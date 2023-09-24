@@ -57,7 +57,7 @@ def run_test(test_name, connect_fun, query_fun):
             model_result = f"ERROR Running SQL: {E}"
         print(f"Model result:")
         print(model_result)
-        print()
+        print('------------'*5)
 
 def run_many_tests(tests, connect_fun, query_fun):
     for test in tests:
