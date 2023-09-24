@@ -1,15 +1,15 @@
 # [Huawei Tech Arena 2023](https://huawei.agorize.com/en/challenges/irchack2023/)
 <p align="center"> <img width="800" alt="screen" src="imgs/huawei/banner.png"> </p>
 
-## Competition Detail
+## Infectious SmartQuery Solution
 
-<p align="center"> <img width="500" alt="screen" src="imgs/huawei/schedule.png"> </p>
+### Solution Architecture
 
-<p align="center"> <img width="500" alt="screen" src="imgs/huawei/goal.png"> </p>
+<p align="center"> <img width="500" alt="screen" src="imgs/Infectious.drawio.png"> </p>
 
-<p align="center"> <img width="500" alt="screen" src="imgs/huawei/architecture.png"> </p>
+### Solution Operational Process
 
-<p align="center"> <img width="500" alt="screen" src="imgs/huawei/pillars.png"> </p>
+<p align="center"> <img width="500" alt="screen" src="imgs/InfectiousBPMN.svg"> </p>
 
 
 ## Setup
@@ -37,31 +37,3 @@ docker run -it -p 8008:8008 --gpus all huawei:latest
 ```
 sh jupyter.sh
 ```
-
-
-## Possible solutions:
-
-1. Use defog/sqlcoder from huggingface
-2. Use LLaMa2 from huggingface but needs finetune since performance really bad: https://medium.com/llamaindex-blog/easily-finetune-llama-2-for-your-text-to-sql-applications-ecd53640e10d
-3. Use text-to-SQL LM (not LLM) like T5 and FLAN also from HuggingFace:
-    - https://huggingface.co/juierror/text-to-sql-with-table-schema
-    - https://huggingface.co/cssupport/t5-small-awesome-text-to-sql
-4. Use CodeS: https://github.com/RUCKBReasoning/codes
-
-
-## To-dos
-- [x] End-to-end pipeline
-- [x] Convert schema description from database to sqlcoder's db schema format
-- [ ] Verify input string for potential danger (LLM?)
-- [x] Handle execution error 
-- [x] SQL injection test
-- [x] Prompt injection test
-- [x] Check if the model can explain the answer generation workflow 
-- [ ] Loop for following-up questions ...
-
-
-## Issues
-
-- SQLCoder oftens generate query in snake_case regardless of input schema. If schema tables or columns' names are in CamelCase, it will lead to error. Similar issue was opened in https://github.com/defog-ai/sqlcoder/issues/17
-- When using Llama2, it is recommened to use its specific [prompt template](https://gpus.llm-utils.org/llama-2-prompt-template/)
-- Tips to prevent SQL model from hallucination: https://blog.langchain.dev/llms-and-sql/
