@@ -56,8 +56,9 @@ class BaseLLM:
             )
         
         outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
-        torch.cuda.empty_cache()
-        torch.cuda.synchronize()
+        if self.device == "cuda":
+            torch.cuda.empty_cache()
+            torch.cuda.synchronize()
         return outputs[0]
 
 class SQLCoder(BaseLLM):
@@ -103,8 +104,9 @@ class SQLCoder(BaseLLM):
         # Solely based on SQLCoder's output format, the prompt template should follow this format:
         outputs = outputs[0].split("```sql")[-1].split("```")[0].split(";")[0].strip() + ";"
         
-        torch.cuda.empty_cache()
-        torch.cuda.synchronize()
+        if self.device == "cuda":
+            torch.cuda.empty_cache()
+            torch.cuda.synchronize()
         return outputs
 
 
@@ -152,8 +154,9 @@ class Llama2_7B(BaseLLM):
             )
         
         outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
-        torch.cuda.empty_cache()
-        torch.cuda.synchronize()
+        if self.device == "cuda":
+            torch.cuda.empty_cache()
+            torch.cuda.synchronize()
         return outputs[0]
 
 
@@ -186,6 +189,23 @@ class Llama2_13B(BaseLLM):
         if USE_OPTIMUM:
             self.model.to_bettertransformer()
         self.model.eval()
+        
+    def generate(self, prompt:str, **kwargs):
+        inputs = self.tokenizer(prompt, return_tensors="pt").to("cuda")
+        
+        with torch.no_grad():
+            generated_ids = self.model.generate(
+                **inputs,
+                max_new_tokens=kwargs.get("max_new_tokens", 400),
+                num_beams=kwargs.get("num_beams", 1),
+                num_return_sequences=1,
+            )
+        
+        outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
+        if self.device == "cuda":
+           torch.cuda.empty_cache()
+            torch.cuda.synchronize()
+        return outputs[0]
 
 class CodeS(BaseLLM):
     def __init__(self, **kwargs):
@@ -200,6 +220,7 @@ class CodeS(BaseLLM):
             load_in_4bit=self.load_in_4bit,
             device_map="auto" if self.device == "cuda" else "cpu",
             use_cache=True,
+            cache_dir = self.cache_dir,
             quantization_config=self.quantization_config,
             cache_dir  = self.cache_dir
         )
@@ -207,6 +228,24 @@ class CodeS(BaseLLM):
         if USE_OPTIMUM:
             self.model.to_bettertransformer()
         self.model.eval()
+        
+          
+    def generate(self, prompt:str, **kwargs):
+        inputs = self.tokenizer(prompt, return_tensors="pt").to("cuda")
+        
+        with torch.no_grad():
+            generated_ids = self.model.generate(
+                **inputs,
+                max_new_tokens=kwargs.get("max_new_tokens", 400),
+                num_beams=kwargs.get("num_beams", 1),
+                num_return_sequences=1,
+            )
+        
+        outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
+        if self.device == "cuda":
+            torch.cuda.empty_cache()
+            torch.cuda.synchronize()
+        return outputs[0]
 
 class CodeS_3B(BaseLLM):
     def __init__(self, **kwargs):
@@ -288,7 +327,7 @@ class NSQL350(BaseLLM):
             )
         
         outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
-        torch.cuda.empty_cache()
         if self.device == "cuda":
+            torch.cuda.empty_cache()
             torch.cuda.synchronize()
         return outputs[0]
