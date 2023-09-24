@@ -17,6 +17,8 @@ def get_model(name: str, **kwargs):
         return CodeS_7B(**kwargs)
     elif name == 'flant5':
         return FlanT5(**kwargs)
+    elif name == 'nsql350':
+        return NSQL350(**kwargs)
     else:
         raise NotImplementedError
 
