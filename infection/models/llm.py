@@ -274,6 +274,7 @@ class NSQL350(BaseLLM):
         self.model_name = "NumbersStation/nsql-350M"
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, cache_dir=self.cache_dir)
         self.model = AutoModelForCausalLM.from_pretrained(self.model_name, cache_dir=self.cache_dir)
+        self.model.eval()
 
     def generate(self, prompt:str, **kwargs):
         inputs = self.tokenizer(prompt, return_tensors="pt").to(self.device)
@@ -288,5 +289,6 @@ class NSQL350(BaseLLM):
         
         outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
         torch.cuda.empty_cache()
-        torch.cuda.synchronize()
+        if self.device == "cuda":
+            torch.cuda.synchronize()
         return outputs[0]
