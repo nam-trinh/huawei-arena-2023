@@ -56,8 +56,9 @@ class BaseLLM:
             )
         
         outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
-        torch.cuda.empty_cache()
-        torch.cuda.synchronize()
+        if self.device == "cuda":
+            torch.cuda.empty_cache()
+            torch.cuda.synchronize()
         return outputs[0]
 
 class SQLCoder(BaseLLM):
@@ -103,8 +104,9 @@ class SQLCoder(BaseLLM):
         # Solely based on SQLCoder's output format, the prompt template should follow this format:
         outputs = outputs[0].split("```sql")[-1].split("```")[0].split(";")[0].strip() + ";"
         
-        torch.cuda.empty_cache()
-        torch.cuda.synchronize()
+        if self.device == "cuda":
+            torch.cuda.empty_cache()
+            torch.cuda.synchronize()
         return outputs
 
 
@@ -152,8 +154,9 @@ class Llama2_7B(BaseLLM):
             )
         
         outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
-        torch.cuda.empty_cache()
-        torch.cuda.synchronize()
+        if self.device == "cuda":
+            torch.cuda.empty_cache()
+            torch.cuda.synchronize()
         return outputs[0]
 
 
@@ -199,8 +202,9 @@ class Llama2_13B(BaseLLM):
             )
         
         outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
-        torch.cuda.empty_cache()
-        torch.cuda.synchronize()
+        if self.device == "cuda":
+           torch.cuda.empty_cache()
+            torch.cuda.synchronize()
         return outputs[0]
 
 class CodeS(BaseLLM):
@@ -238,8 +242,9 @@ class CodeS(BaseLLM):
             )
         
         outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
-        torch.cuda.empty_cache()
-        torch.cuda.synchronize()
+        if self.device == "cuda":
+            torch.cuda.empty_cache()
+            torch.cuda.synchronize()
         return outputs[0]
 
 class CodeS_3B(BaseLLM):
@@ -322,7 +327,7 @@ class NSQL350(BaseLLM):
             )
         
         outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
-        torch.cuda.empty_cache()
         if self.device == "cuda":
+            torch.cuda.empty_cache()
             torch.cuda.synchronize()
         return outputs[0]
