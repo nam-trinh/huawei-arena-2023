@@ -219,9 +219,10 @@ class CodeS_3B(BaseLLM):
             self.model_name,
             trust_remote_code=True,
             load_in_4bit=self.load_in_4bit,
-            device_map="auto",
+            device_map="auto" if self.device == 'cuda' else 'cpu',
             use_cache=True,
             quantization_config=self.quantization_config,
+            cache_dir  = self.cache_dir
         )
 
         if USE_OPTIMUM:
@@ -239,9 +240,10 @@ class CodeS_7B(BaseLLM):
             self.model_name,
             trust_remote_code=True,
             load_in_4bit=self.load_in_4bit,
-            device_map="auto",
+            device_map="auto" if self.device == 'cuda' else 'cpu',
             use_cache=True,
             quantization_config=self.quantization_config,
+            cache_dir  = self.cache_dir
         )
 
         if USE_OPTIMUM:
@@ -256,7 +258,7 @@ class FlanT5(BaseLLM):
         #'cssupport/t5-small-awesome-text-to-sql'
         if self.model_name == "juierror/text-to-sql-with-table-schema":
             self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, cache_dir=self.cache_dir)
-            self.model = AutoModelForSeq2SeqLM.from_pretrained(self.model_name)
+            self.model = AutoModelForSeq2SeqLM.from_pretrained(self.model_name , cache_dir=self.cache_dir)
         else:
             self.model = T5ForConditionalGeneration.from_pretrained(self.model_name)
             self.tokenizer = T5Tokenizer.from_pretrained('t5-small', cache_dir=self.cache_dir)
