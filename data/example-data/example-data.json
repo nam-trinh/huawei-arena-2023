@@ -1,0 +1,162 @@
+[
+  {
+    "question": "RTA filtering count for task 342111?",
+    "table_id": [
+      "pre_ranking_filter_log"
+    ],
+    "sql": [
+      "select count(*) from pre_ranking_filter_log where task=342111 and filter_key = 'o_rta_filter'",
+      "SELECT COUNT(*) AS \"_col_0\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" WHERE \"pre_ranking_filter_log\".\"filter_key\" = 'o_rta_filter' AND \"pre_ranking_filter_log\".\"task\" = 342111"
+    ],
+    "sql_result": "{\"count(*)\":{\"0\":63}}"
+  },
+  {
+    "question": "count RTA filtering of the task 342111?",
+    "table_id": [
+      "pre_ranking_filter_log"
+    ],
+    "sql": [
+      "select count(*) from pre_ranking_filter_log where task=342111 and filter_key = 'o_rta_filter'",
+      "SELECT COUNT(*) AS \"_col_0\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" WHERE \"pre_ranking_filter_log\".\"filter_key\" = 'o_rta_filter' AND \"pre_ranking_filter_log\".\"task\" = 342111"
+    ],
+    "sql_result": "{\"count(*)\":{\"0\":63}}"
+  },
+  {
+    "question": "RTA and score_rank filtering count for task 342111?",
+    "table_id": [
+      "pre_ranking_filter_log"
+    ],
+    "sql": [
+      "select count(*) from pre_ranking_filter_log where task=342111 and (filter_key = 'o_rta_filter' or filter_key = 'o_score_rank')",
+      "SELECT COUNT(*) AS \"_col_0\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" WHERE (\"pre_ranking_filter_log\".\"filter_key\" = 'o_rta_filter' OR \"pre_ranking_filter_log\".\"filter_key\" = 'o_score_rank') AND \"pre_ranking_filter_log\".\"task\" = 342111"
+    ],
+    "sql_result": "{\"count(*)\":{\"0\":118}}"
+  },
+  {
+    "question": "count creative size filter for task 342111 on 12 January",
+    "table_id": [
+      "pre_ranking_filter_log"
+    ],
+    "sql": [
+      "select count(*) as '342111' from pre_ranking_filter_log where task=342111 and filter_key='o_creative_size' and date(timestamp)='2023-01-12'",
+      "SELECT COUNT(*) AS \"342111\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" WHERE \"pre_ranking_filter_log\".\"filter_key\" = 'o_creative_size' AND \"pre_ranking_filter_log\".\"task\" = 342111 AND DATE(\"pre_ranking_filter_log\".\"timestamp\") = '2023-01-12'"
+    ],
+    "sql_result": "{\"342111\":{\"0\":3}}"
+  },
+  {
+    "question": "compare RTA filter for task 342111 and 342112?",
+    "table_id": [
+      "pre_ranking_filter_log"
+    ],
+    "sql": [
+      "WITH \"t1\" AS (SELECT COUNT(*) AS \"342111\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" WHERE \"pre_ranking_filter_log\".\"task\" = 342111), \"t2\" AS (SELECT COUNT(*) AS \"342112\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" WHERE \"pre_ranking_filter_log\".\"task\" = 342112) SELECT \"t1\".\"342111\" AS \"342111\", \"t2\".\"342112\" AS \"342112\" FROM \"t1\" CROSS JOIN \"t2\"",
+      "SELECT COUNT(*) AS \"342111\", (SELECT COUNT(*) AS \"_col_0\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" WHERE \"pre_ranking_filter_log\".\"task\" = 342112) AS \"342112\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" WHERE \"pre_ranking_filter_log\".\"task\" = 342111",
+      "select count(*) as \"342111\", (select count(*) from pre_ranking_filter_log where task=342112) as \"342112\" from pre_ranking_filter_log where task = 342111",
+      "With t1 as (select count(*) as \"342111\" from pre_ranking_filter_log where task = 342111), t2 as (select count(*) as \"342112\" from pre_ranking_filter_log where task = 342112) select * from t1, t2"
+    ],
+    "sql_result": "{\"342111\":{\"0\":800},\"342112\":{\"0\":800}}"
+  },
+  {
+    "question": "compare filter count for task 342111 between 12nd and 13rd Jan",
+    "table_id": [
+      "pre_ranking_filter_log"
+    ],
+    "sql": [
+      "With t1 as (select count(*) as '01-12' from pre_ranking_filter_log where task = 342111 and date(timestamp)='2023-01-12'), t2 as (select count(*) as '01-13' from pre_ranking_filter_log where task=342111 and date(timestamp)='2023-01-13') select * from t1, t2",
+      "WITH \"t1\" AS (SELECT COUNT(*) AS \"01-12\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" WHERE \"pre_ranking_filter_log\".\"task\" = 342111 AND DATE(\"pre_ranking_filter_log\".\"timestamp\") = '2023-01-12'), \"t2\" AS (SELECT COUNT(*) AS \"01-13\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" WHERE \"pre_ranking_filter_log\".\"task\" = 342111 AND DATE(\"pre_ranking_filter_log\".\"timestamp\") = '2023-01-13') SELECT \"t1\".\"01-12\" AS \"01-12\", \"t2\".\"01-13\" AS \"01-13\" FROM \"t1\" CROSS JOIN \"t2\""
+    ],
+    "sql_result": "{\"01-12\":{\"0\":50},\"01-13\":{\"0\":50}}"
+  },
+  {
+    "question": "count each filter key for task 342111",
+    "table_id": [
+      "pre_ranking_filter_log"
+    ],
+    "sql": [
+      "SELECT \"pre_ranking_filter_log\".\"filter_key\" AS \"filter_key\", COUNT(*) AS \"filter_count\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" WHERE \"pre_ranking_filter_log\".\"task\" = 342111 GROUP BY \"pre_ranking_filter_log\".\"filter_key\"",
+      "SELECT filter_key, COUNT(*) as filter_count FROM pre_ranking_filter_log WHERE task = 342111 GROUP BY filter_key"
+    ],
+    "sql_result": "{\"filter_key\":{\"0\":\"o_balance_low\",\"1\":\"o_block_media\",\"2\":\"o_blocking_publisher\",\"3\":\"o_country_target\",\"4\":\"o_creative_size\",\"5\":\"o_daily_buget\",\"6\":\"o_imprecise_diversity_advertiser\",\"7\":\"o_imprecise_diversity_industry\",\"8\":\"o_imprecise_ecpm_rank\",\"9\":\"o_over_delivery_control\",\"10\":\"o_rank_filter_vector\",\"11\":\"o_rta_filter\",\"12\":\"o_score_rank\",\"13\":\"o_template_id\"},\"filter_count\":{\"0\":63,\"1\":55,\"2\":65,\"3\":56,\"4\":50,\"5\":64,\"6\":55,\"7\":49,\"8\":66,\"9\":60,\"10\":51,\"11\":63,\"12\":55,\"13\":48}}"
+  },
+  {
+    "question": "count country blocked filtering of the task 342111?",
+    "table_id": [
+      "pre_ranking_filter_log",
+      "pre_ranking_filter_key_mapping"
+    ],
+    "sql": [
+      "SELECT COUNT(*) AS count FROM pre_ranking_filter_log left JOIN pre_ranking_filter_key_mapping ON pre_ranking_filter_log.filter_key = pre_ranking_filter_key_mapping.filter_key WHERE task = '342111' AND filter_key_en = 'blocked country'",
+      "SELECT COUNT(*) AS count FROM pre_ranking_filter_log WHERE task = '342111' AND filter_key = 'o_country_target'",
+      "SELECT COUNT(*) AS \"count\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" WHERE \"pre_ranking_filter_log\".\"filter_key\" = 'o_country_target' AND \"pre_ranking_filter_log\".\"task\" = '342111'"
+    ],
+    "sql_result": "{\"count\":{\"0\":56}}"
+  },
+  {
+    "question": "In task 342111, what are the filtering stages?",
+    "table_id": [
+      "pre_ranking_filter_log",
+      "pre_ranking_filter_key_mapping"
+    ],
+    "sql": [
+      "SELECT DISTINCT t2.filter_stage FROM pre_ranking_filter_log t1 JOIN pre_ranking_filter_key_mapping t2 ON t1.filter_key = t2.filter_key WHERE t1.task = 342111",
+      "SELECT DISTINCT \"t2\".\"filter_stage\" AS \"filter_stage\" FROM \"pre_ranking_filter_log\" AS \"t1\" JOIN \"pre_ranking_filter_key_mapping\" AS \"t2\" ON \"t1\".\"filter_key\" = \"t2\".\"filter_key\" WHERE \"t1\".\"task\" = 342111"
+    ],
+    "sql_result": "{\"filter_stage\":{\"0\":\"pre_ranking\",\"1\":\"ranking\"}}"
+  },
+  {
+    "question": "show me the ctr of tasks having same requests of task 342112",
+    "table_id": [
+      "request_log",
+      "predicted_metric_log"
+    ],
+    "sql": [
+      "select task, avg(avg_ctr) from predicted_metric_log where task in (select distinct task from request_log where request_id in (select distinct request_id from request_log where task = 342112)) group by task",
+      "WITH \"_u_0\" AS (SELECT DISTINCT \"request_log\".\"request_id\" AS \"request_id\" FROM \"request_log\" AS \"request_log\" WHERE \"request_log\".\"task\" = 342112 GROUP BY \"request_log\".\"request_id\"), \"_u_1\" AS (SELECT DISTINCT \"request_log\".\"task\" AS \"task\" FROM \"request_log\" AS \"request_log\" LEFT JOIN \"_u_0\" AS \"_u_0\" ON \"request_log\".\"request_id\" = \"_u_0\".\"request_id\" WHERE NOT \"_u_0\".\"request_id\" IS NULL GROUP BY \"request_log\".\"task\") SELECT \"predicted_metric_log\".\"task\" AS \"task\", AVG(\"predicted_metric_log\".\"avg_ctr\") AS \"_col_1\" FROM \"predicted_metric_log\" AS \"predicted_metric_log\" LEFT JOIN \"_u_1\" AS \"_u_1\" ON \"predicted_metric_log\".\"task\" = \"_u_1\".\"task\" WHERE NOT \"_u_1\".\"task\" IS NULL GROUP BY \"predicted_metric_log\".\"task\""
+    ],
+    "sql_result": "{\"task\":{\"0\":342111,\"1\":342112,\"2\":342113,\"3\":342114,\"4\":342115,\"5\":342116,\"6\":342117},\"avg(avg_ctr)\":{\"0\":0.523125,\"1\":0.3875,\"2\":0.518125,\"3\":0.66875,\"4\":0.4675,\"5\":0.46,\"6\":0.443125}}"
+  },
+  {
+    "question": "How are the filter counts for task 342111 distributed as percentages for each filter?",
+    "table_id": [
+      "pre_ranking_filter_log"
+    ],
+    "sql": [
+      "WITH t1 AS (select filter_key, count(*) as n from pre_ranking_filter_log where task = 342111 group by filter_key) SELECT filter_key, n, n*100.0/(select sum(n) from t1) FROM t1",
+      "WITH \"t1\" AS (SELECT \"pre_ranking_filter_log\".\"filter_key\" AS \"filter_key\", COUNT(*) AS \"n\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" WHERE \"pre_ranking_filter_log\".\"task\" = 342111 GROUP BY \"pre_ranking_filter_log\".\"filter_key\"), \"_u_0\" AS (SELECT SUM(\"t1\".\"n\") AS \"_col_0\" FROM \"t1\") SELECT \"t1\".\"filter_key\" AS \"filter_key\", \"t1\".\"n\" AS \"n\", \"t1\".\"n\" * 100.0 / \"_u_0\".\"_col_0\" AS \"_col_2\" FROM \"t1\" CROSS JOIN \"_u_0\" AS \"_u_0\""
+    ],
+    "sql_result": "{\"filter_key\":{\"0\":\"o_balance_low\",\"1\":\"o_block_media\",\"2\":\"o_blocking_publisher\",\"3\":\"o_country_target\",\"4\":\"o_creative_size\",\"5\":\"o_daily_buget\",\"6\":\"o_imprecise_diversity_advertiser\",\"7\":\"o_imprecise_diversity_industry\",\"8\":\"o_imprecise_ecpm_rank\",\"9\":\"o_over_delivery_control\",\"10\":\"o_rank_filter_vector\",\"11\":\"o_rta_filter\",\"12\":\"o_score_rank\",\"13\":\"o_template_id\"},\"n\":{\"0\":63,\"1\":55,\"2\":65,\"3\":56,\"4\":50,\"5\":64,\"6\":55,\"7\":49,\"8\":66,\"9\":60,\"10\":51,\"11\":63,\"12\":55,\"13\":48},\"n*100.0\\/(select sum(n) from t1)\":{\"0\":7.875,\"1\":6.875,\"2\":8.125,\"3\":7.0,\"4\":6.25,\"5\":8.0,\"6\":6.875,\"7\":6.125,\"8\":8.25,\"9\":7.5,\"10\":6.375,\"11\":7.875,\"12\":6.875,\"13\":6.0}}"
+  },
+  {
+    "question": "the percentage of RTA filter count for task 342111",
+    "table_id": [
+      "pre_ranking_filter_log"
+    ],
+    "sql": [
+      "WITH \"_u_0\" AS (SELECT COUNT(*) AS \"_col_0\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" WHERE \"pre_ranking_filter_log\".\"task\" = 342111) SELECT COUNT(*) * 100.0 / \"_u_0\".\"_col_0\" AS \"_col_0\" FROM \"pre_ranking_filter_log\" AS \"pre_ranking_filter_log\" CROSS JOIN \"_u_0\" AS \"_u_0\" WHERE \"pre_ranking_filter_log\".\"filter_key\" = 'o_rta_filter' AND \"pre_ranking_filter_log\".\"task\" = 342111",
+      "select count(*)*100.0 /(select count(*) from pre_ranking_filter_log where task=342111) from pre_ranking_filter_log where task=342111 and filter_key='o_rta_filter'"
+    ],
+    "sql_result": "{\"_col_0\":{\"0\":7.875}}"
+  },
+  {
+    "question": "distinct filter stages",
+    "table_id": [
+      "pre_ranking_filter_key_mapping"
+    ],
+    "sql": [
+      "SELECT DISTINCT \"pre_ranking_filter_key_mapping\".\"filter_stage\" AS \"filter_stage\" FROM \"pre_ranking_filter_key_mapping\" AS \"pre_ranking_filter_key_mapping\"",
+      "select DISTINCT filter_stage from pre_ranking_filter_key_mapping"
+    ],
+    "sql_result": "{\"filter_stage\":{\"0\":\"pre_ranking\",\"1\":\"ranking\"}}"
+  },
+  {
+    "question": "what are unique filter stages",
+    "table_id": [
+      "pre_ranking_filter_key_mapping"
+    ],
+    "sql": [
+      "select DISTINCT filter_stage from pre_ranking_filter_key_mapping",
+      "SELECT DISTINCT \"pre_ranking_filter_key_mapping\".\"filter_stage\" AS \"filter_stage\" FROM \"pre_ranking_filter_key_mapping\" AS \"pre_ranking_filter_key_mapping\""
+    ],
+    "sql_result": "{\"filter_stage\":{\"0\":\"pre_ranking\",\"1\":\"ranking\"}}"
+  }
+]
