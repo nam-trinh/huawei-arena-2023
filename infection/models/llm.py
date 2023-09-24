@@ -267,3 +267,25 @@ class FlanT5(BaseLLM):
         if USE_OPTIMUM:
             self.model.to_bettertransformer()
         self.model.eval()
+
+class NSQL350(BaseLLM):
+    def __init__(self, **kwargs):
+        self.model_name = "NumbersStation/nsql-350M"
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, cache_dir=self.cache_dir)
+        self.model = AutoModelForCausalLM.from_pretrained(self.model_name, cache_dir=self.cache_dir)
+
+    def generate(self, prompt:str, **kwargs):
+        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.device)
+        
+        with torch.no_grad():
+            generated_ids = self.model.generate(
+                **inputs,
+                max_new_tokens=kwargs.get("max_new_tokens", 400),
+                num_beams=kwargs.get("num_beams", 1),
+                num_return_sequences=1,
+            )
+        
+        outputs = self.tokenizer.batch_decode(generated_ids, skip_special_tokens=True)
+        torch.cuda.empty_cache()
+        torch.cuda.synchronize()
+        return outputs[0]
