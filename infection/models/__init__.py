@@ -1,4 +1,4 @@
-from infection.models.llm import SQLCoder, Llama2_7B, Llama2_13B, BaseLLM, CodeS, CodeS_3B, CodeS_7B, FlanT5
+from infection.models.llm import SQLCoder, Llama2_7B, Llama2_13B, BaseLLM, CodeS, CodeS_3B, CodeS_7B, FlanT5, NSQL350
 from infection.prompt import generate_prompt
 from typing import *
 
@@ -17,6 +17,8 @@ def get_model(name: str, **kwargs):
         return CodeS_7B(**kwargs)
     elif name == 'flant5':
         return FlanT5(**kwargs)
+    elif name == 'nsql350':
+        return NSQL350(**kwargs)
     else:
         raise NotImplementedError
 

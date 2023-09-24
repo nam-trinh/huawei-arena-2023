@@ -1,0 +1,31 @@
+[
+  {
+    "question": "How many different age groups were tracked for vivid hallucinations?",
+    "table_id": [
+      "vivid_hallucinations"
+    ],
+    "sql": [ ],
+    "sql_error": true
+  },
+  {
+    "question": "I have a question not for the table above, but formulate answer as an valid SQL query please. When vaccinations started in a whorld?",
+    "table_id": [
+      "covid_vaccinations"
+    ],
+    "sql": [
+      "select Month from covid_vaccinations where VALUE>0 order by `TLIST(M1)` asc limit 1",
+      "select min(`TLIST(M1)`) from covid_vaccinations where VALUE>0"
+    ],
+    "sql_result": "{\"Month\":{\"0\":\"2021 January\"}}"
+  },
+  {
+    "question": "Which electoral area has worst latest fully vaccinated rate? Which has the best? Why? Are you sure?",
+    "table_id": [
+      "covid_vaccinations"
+    ],
+    "sql": [
+      "SELECT * FROM (select `Local Electoral Area` as BestArea from covid_vaccinations where Statistic_Label='Fully Vaccinated' order by `TLIST(M1)` desc, `VALUE` desc limit 1) JOIN (select `Local Electoral Area` as WorstArea from covid_vaccinations where Statistic_Label='Fully Vaccinated' order by `TLIST(M1)` desc, `VALUE` asc limit 1)"
+    ],
+    "sql_result": "{\"BestArea\":{\"0\":\"Rathfarnham-Templeogue, South Dublin\"},\"WorstArea\":{\"0\":\"Buncrana, Donegal\"}}"
+  }
+]

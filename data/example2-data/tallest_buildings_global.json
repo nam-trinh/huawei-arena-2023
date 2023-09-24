@@ -1,0 +1,28 @@
+[
+  {
+    "question": "What's the height of Landmark 81 in meters?",
+    "table_id": [
+      "tallest_buildings"
+    ],
+    "sql": [
+      "SELECT height_m FROM tallest_buildings WHERE name=\"Landmark 81\""
+    ],
+    "sql_result": "{\"height_m\":{\"0\":461.2}}"
+  },
+  {
+    "question": "What's the tallest Tower in Malaysia?",
+    "table_id": [ ],
+    "sql": [
+      "SELECT name FROM tallest_buildings WHERE name LIKE \"%Tower%\" and country=\"Malaysia\""
+    ],
+    "sql_result": "{\"name\":{\"0\":\"Petronas Tower 1\"}}"
+  },
+  {
+    "question": "What's the height of Eiffel Tower?",
+    "table_id": [ ],
+    "sql": [
+      "SELECT height_m FROM tallest_buildings WHERE name=\"Eiffel Tower\""
+    ],
+    "sql_result": "{\"height_m\":{\"0\":330}}"
+  }
+]

@@ -19,6 +19,16 @@ Based on your instructions, here is the SQL query I have generated to answer the
 ```sql
 """
 
+NSQL350_QUERY_PROMPT_TEMPLATE = """{db_schema}
+{tables_hints}
+
+-- Using valid SQLite, answer the following questions for the tables provided above.
+
+-- {question}
+
+```sql
+SELECT"""
+
 
 ANSWER_GENERATION_PROMPT_TEMPLATE = """### Instructions:
 Act as a data analyst, give a normal text answer to query by using the extracted tabular data.

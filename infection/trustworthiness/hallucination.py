@@ -123,10 +123,10 @@ def check_sql_hallucination(schemas:Dict, sql_query:str):
 
 def lower_table_and_column(sql_query):
     for column in parse_one(sql_query).find_all(exp.Column):
-        sql_query.replace(column.name, column.name.lower())
+        sql_query = sql_query.replace(column.name, column.name.lower())
 
     for table in parse_one(sql_query).find_all(exp.Table):
-        sql_query.replace(table.name, table.name.lower())
+        sql_query = sql_query.replace(table.name, table.name.lower())
 
     return sql_query
 
