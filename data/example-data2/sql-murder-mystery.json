@@ -1,0 +1,34 @@
+[
+  {
+    "question": "Who's the richest person in the country?",
+    "table_id": ["income", "person"],
+    "sql": [
+      "SELECT name FROM income JOIN person ON (income.ssn=person.ssn) WHERE income.annual_income=(SELECT MAX(annual_income) FROM income);"
+    ],
+    "sql_result": "{\"name\":{\"0\":\"Numbers Cranker\"}}"
+  },
+  {
+    "question": "Which city are the most frequent for each of the types of crime mentioned in crime scene reports? Sort the answer by the crime type, please.",
+    "table_id": [],
+    "sql": [
+      "select distinct type, (select city from (select city, count(1) as cnt from crime_scene_report where type=c1.type order by cnt desc limit 1)) as city from crime_scene_report as c1 order by type"
+    ],
+    "sql_result": "{\"type\":{\"0\":\"arson\",\"1\":\"assault\",\"2\":\"blackmail\",\"3\":\"bribery\",\"4\":\"fraud\",\"5\":\"murder\",\"6\":\"robbery\",\"7\":\"smuggling\",\"8\":\"theft\"},\"city\":{\"0\":\"SQL City\",\"1\":\"SQL City\",\"2\":\"Lacey\",\"3\":\"SQL City\",\"4\":\"Seattle\",\"5\":\"Albany\",\"6\":\"NYC\",\"7\":\"Gilbert\",\"8\":\"Chicago\"}}"
+  },
+  {
+    "question": "What's the name of the person who lives at the last house on \"Northwestern Dr\" street?",
+    "table_id": [],
+    "sql": [
+      "select name from person where address_street_name=\"Northwestern Dr\" order by address_number desc limit 1"
+    ],
+    "sql_result": "{\"name\":{\"0\":\"Morty Schapiro\"}}"
+  },
+  {
+    "question": "What's the name of the first witness mentioned in police crime report for the murder on 2018-01-15 in SQL City?",
+    "table_id": ["crime_scene_report", "person"],
+    "sql": [
+      "SELECT description FROM crime_scene_report WHERE city=\"SQL City\" and date=20180115 and type=\"murder\" LIMIT 1; SELECT name FROM person WHERE address_street_name=\"Northwestern Dr\" ORDER BY address_number DESC LIMIT 1"
+    ],
+    "sql_result": "{\"name\":{\"0\":\"Morty Schapiro\"}}"
+  }
+]
