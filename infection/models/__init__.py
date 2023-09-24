@@ -1,4 +1,4 @@
-from infection.models.llm import SQLCoder, Llama2_7B, Llama2_13B, BaseLLM, CodeS, FlanT5
+from infection.models.llm import SQLCoder, Llama2_7B, Llama2_13B, BaseLLM, CodeS, CodeS_3B, CodeS_7B, FlanT5
 from infection.prompt import generate_prompt
 from typing import *
 
@@ -11,6 +11,10 @@ def get_model(name: str, **kwargs):
         return Llama2_13B(**kwargs)
     elif name == 'codes':
         return CodeS(**kwargs)
+    elif name == 'codes-3b':
+        return CodeS_3B(**kwargs)
+    elif name == 'codes-7b':
+        return CodeS_7B(**kwargs)
     elif name == 'flant5':
         return FlanT5(**kwargs)
     else:
