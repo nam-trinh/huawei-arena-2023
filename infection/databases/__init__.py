@@ -19,3 +19,11 @@ def format_sql_execution(records:List[tuple], column_names: List[str], format:st
     else:
         raise ValueError(f"Unknown format: {format}")
     return results
+
+def format_df_to_table(df, column_names):
+    """
+    Format the SQL execution results to a table
+    """
+    
+    results = tabulate(df, tablefmt="github", headers=column_names)
+    return results
