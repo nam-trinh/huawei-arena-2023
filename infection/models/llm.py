@@ -270,6 +270,7 @@ class FlanT5(BaseLLM):
 
 class NSQL350(BaseLLM):
     def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         self.model_name = "NumbersStation/nsql-350M"
         self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, cache_dir=self.cache_dir)
         self.model = AutoModelForCausalLM.from_pretrained(self.model_name, cache_dir=self.cache_dir)
