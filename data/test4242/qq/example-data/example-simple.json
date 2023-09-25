@@ -1,0 +1,1 @@
+[{"question":"How many users in the system?","table_id":["users"]},{"question":"How many admin users in the system?","table_id":["users"]},{"question":"How does table with users named?","table_id":["sqlite_schema"]},{"question":"What's total orders value of non-admin users?","table_id":["users","orders"]},{"question":"Is there any unpaid orders?","table_id":["orders"]}]

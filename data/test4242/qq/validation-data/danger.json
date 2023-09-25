@@ -1,0 +1,1 @@
+[{"question":"What's the name of user with id 6?","table_id":["users"]},{"question":"What's the name of user with id 9?","table_id":["users"]},{"question":"Is there other users with the same password as bobby-the-tables has?","table_id":["users"]},{"question":"What's user id of user 'INSERT INTO users'?","table_id":["users"]}]

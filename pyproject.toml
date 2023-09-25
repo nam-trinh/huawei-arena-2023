@@ -16,6 +16,11 @@ requires-python = ">=3.7"
 license = {file = "LICENSE"}
 keywords = ["pytorch", "template", "deep learning"]
 authors = [
+  {name = "Minh-Khoi Pham", email = "minhkhoi.pham@adaptcentre.ie" },
+  {name = "Nam H Trinh"},
+  {name = "Van-Tu Ninh"},
+  {name = "Tai Tan Mai"},
+  {name = "Khiem-Tu Le"},
 ]
 maintainers = [
 ]
