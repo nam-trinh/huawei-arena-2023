@@ -71,15 +71,15 @@ def run_many_tests(tests, connect_fun, query_fun):
 
 def run_all_tests(connect_fun, query_fun, path=''):
     TEST_SETS = [
-        'example-data/example-covid-vaccinations',
-        'example-data/example-data',
-        'example-data/example-simple',
-        'example-data/sql-murder-mystery',
-        'example-data/tallest_buildings_global',
-        'example2-data/example-covid-vaccinations',
-        'example2-data/example-simple',
-        'example2-data/sql-murder-mystery',
-        'example2-data/tallest_buildings_global'
+        'data/example-data/example-covid-vaccinations',
+        'data/example-data/example-data',
+        'data/example-data/example-simple',
+        'data/example-data/sql-murder-mystery',
+        'data/example-data/tallest_buildings_global',
+        'data/example2-data/example-covid-vaccinations',
+        'data/example2-data/example-simple',
+        'data/example2-data/sql-murder-mystery',
+        'data/example2-data/tallest_buildings_global'
     ]
     TEST_SETS = [path + x for x in TEST_SETS]
     run_many_tests(TEST_SETS, connect_fun, query_fun)
